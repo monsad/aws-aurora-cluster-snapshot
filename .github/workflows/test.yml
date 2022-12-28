@@ -17,8 +17,8 @@ jobs:
       - name: setup aws-aurora-cluster-snapshot
         uses: ./
         with:
-          access_key_id: test
-          secret_access_key: test
-          region: us-east-1
-          cluster_name: test
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ secrets.REGION }}
+          cluster_name: ${{ secrets.CLUSTER_NAME }}
           prefix: backup
