@@ -7,7 +7,7 @@ function main() {
   sanitize "${INPUT_ACCESS_KEY_ID}" "access_key_id"
   sanitize "${INPUT_SECRET_ACCESS_KEY}" "secret_access_key"
   sanitize "${INPUT_REGION}" "region"
-  sanitize "${INPUT_CULSTER_NAME}" "cluster_name"
+  sanitize "${INPUT_CLUSTER_NAME}" "cluster_name"
 
   aws_configure
   take_snapshot
@@ -27,15 +27,15 @@ function aws_configure() {
 }
 
 function take_snapshot() {
-  echo "== Taking SNAPSHOT OF ${INPUT_CULSTER_NAME}"
-  if [ "${INPUT_CULSTER_NAME}" == "" ]; then
+  echo "== Taking SNAPSHOT OF ${INPUT_CLUSTER_NAME}"
+  if [ "${INPUT_CLUSTER_NAME}" == "" ]; then
     echo "Unable to find the cluster_name. Did you set with cluster_name?"
     exit 1
   fi
 
-  aws rds create-db-cluster-snapshot --db-cluster-identifier ${INPUT_CULSTER_NAME} --db-cluster-snapshot-identifier ${INPUT_PREFIX}-$(date +%Y%m%d%H%M%S) --region ${INPUT_REGION}
+  aws rds create-db-cluster-snapshot --db-cluster-identifier ${INPUT_CLUSTER_NAME} --db-cluster-snapshot-identifier ${INPUT_PREFIX}-$(date +%Y%m%d%H%M%S) --region ${INPUT_REGION}
 
-  echo "== FINISHED SNAPSHOT of ${INPUT_CULSTER_NAME}"
+  echo "== FINISHED SNAPSHOT of ${INPUT_CLUSTER_NAME}"
 }
 
 main
