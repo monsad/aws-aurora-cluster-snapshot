@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#push
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  try:
+    name: try
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: setup aws-aurora-cluster-snapshot
+        uses: ./
+        with:
+          access_key_id: test
+          secret_access_key: test
+          region: us-east-1
+          cluster_name: test
+          prefix: backup

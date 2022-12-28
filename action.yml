@@ -1,0 +1,25 @@
+name: AWS Aurora Cluster Snapshot
+author: Durgaprasad Budhwani
+branding:
+  icon: upload-cloud
+  color: orange
+description: Create Docker images and push into a ECR repository.
+inputs:
+  access_key_id:
+    description: The AWS access key id
+    required: true
+  secret_access_key:
+    description: The AWS secret access key
+    required: true
+  region:
+    description: The AWS region
+    required: true
+  cluster_name:
+    description: AWS Aurora Database Cluster Name
+    default: true
+  prefix:
+    description: Prefix of the backup
+    default: false
+runs:
+  using: docker
+  image: Dockerfile
